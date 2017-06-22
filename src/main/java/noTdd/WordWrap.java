@@ -51,9 +51,9 @@ public class WordWrap {
     private static String splitNicely(String text, int width) {
         String maxToAppend = text.substring(0, width);
         if (text.charAt(width) == ' ') {
-            return maxToAppend;
+            return maxToAppend.trim();
         }
-        int lastSpace = maxToAppend.lastIndexOf(' ');
+        int lastSpace = maxToAppend.trim().lastIndexOf(' ');
         return lastSpace == -1 ? maxToAppend : maxToAppend.substring(0, lastSpace);
     }
 
@@ -61,6 +61,6 @@ public class WordWrap {
     public static void main(String[] args) {
         System.out.println(WordWrap.wrap(
                 "this is a long line of text this is a long line " +
-                "of text this is a long line of text", 5));
+                "of text this is a long line of text", 20));
     }
 }
