@@ -12,10 +12,7 @@ repositories {
 }
 
 ext.junit4Version        = '4.12'
-ext.junitVintageVersion  = '4.12.0-M4'
-ext.junitPlatformVersion = '1.0.0-M4'
 ext.junitJupiterVersion  = '5.0.0-M4'
-ext.log4jVersion         = '2.6.2'
 
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -45,8 +42,4 @@ dependencies {
     testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
 
     testCompile("junit:junit:${junit4Version}")
-    testRuntime("org.junit.vintage:junit-vintage-engine:${junitVintageVersion}")
-
-    testRuntime("org.apache.logging.log4j:log4j-core:${log4jVersion}")
-    testRuntime("org.apache.logging.log4j:log4j-jul:${log4jVersion}")
 }
