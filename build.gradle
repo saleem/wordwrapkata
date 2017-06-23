@@ -11,7 +11,6 @@ repositories {
     mavenCentral()
 }
 
-ext.junit4Version        = '4.12'
 ext.junitJupiterVersion  = '5.0.0-M4'
 
 apply plugin: 'java'
@@ -29,17 +28,8 @@ compileTestJava {
     options.compilerArgs += '-parameters'
 }
 
-junitPlatform {
-    filters {
-        tags {
-            exclude 'slow'
-        }
-    }
-}
-
 dependencies {
     testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+    testCompile("org.hamcrest:hamcrest-junit:2.0.0.0")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
-
-    testCompile("junit:junit:${junit4Version}")
 }
