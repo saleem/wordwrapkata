@@ -6,8 +6,8 @@ public class WordWrap {
         if (text.length() <= width) {
             return text;
         }
-        String toAppend = splitNicely(text, width);
-        String remainder = text.substring(toAppend.length());
+        String toAppend = splitNicely(text, width).trim();
+        String remainder = text.substring(toAppend.length()).trim();
         return toAppend + "\n" + wrap(remainder, width);
     }
 
