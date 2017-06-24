@@ -12,4 +12,11 @@ public class WordWrapTest {
     public void trivialCase(TestInfo testInfo) {
         assertThat(WordWrap.wrap("text", 10), is("text"));
     }
+
+    @Test
+    @DisplayName("Wrapping a long word with a short width chops up the word")
+    public void oneLongWord() {
+        assertThat(WordWrap.wrap("thisisoneunbelievablylongword", 10),
+                is("thisisoneu\nnbelievabl\nylongword"));
+    }
 }
