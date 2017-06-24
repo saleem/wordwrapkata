@@ -19,4 +19,11 @@ public class WordWrapTest {
         assertThat(WordWrap.wrap("thisisoneunbelievablylongword", 10),
                 is("thisisoneu\nnbelievabl\nylongword"));
     }
+
+    @Test
+    @DisplayName("When a space exists, wrap there instead of chopping the next word")
+    public void wrapAtSpace() {
+        assertThat(WordWrap.wrap("wrap this without chopping", 10),
+                is ("wrap this\n without\n chopping"));
+    }
 }
