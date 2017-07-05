@@ -22,12 +22,20 @@ public class WordWrap {
 
     private static int splitLocation(String maxToAppend) {
         int location = getLocationOfLastUpperCaseWord(maxToAppend);
-        return location == -1 ? maxToAppend.lastIndexOf(' ') : location;
+        return location == -1 ? getLocationOfLastWhitespace(maxToAppend) : location;
+    }
+
+    private static int getLocationOfLastWhitespace(String maxToAppend) {
+        int lastSpace = maxToAppend.lastIndexOf(' ');
+        int lastTab = maxToAppend.lastIndexOf('\t');
+        int lastCR = maxToAppend.lastIndexOf('\r');
+        int lastFF = maxToAppend.lastIndexOf('\f');
+        return Math.max(lastSpace, Math.max(lastTab, Math.max(lastCR, lastFF)));
     }
 
     private static int getLocationOfLastUpperCaseWord(String maxToAppend) {
         int location = -1;
-        Matcher matcher = Pattern.compile(" [A-Z]").matcher(maxToAppend);
+        Matcher matcher = Pattern.compile("[\\s][A-Z]").matcher(maxToAppend);
         while (matcher.find()) {
             location = matcher.start();
         }

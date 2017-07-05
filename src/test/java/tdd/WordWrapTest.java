@@ -32,9 +32,37 @@ public class WordWrapTest {
     }
 
     @Test
+    @DisplayName("When a nearby horizontal tab exists, wrap there and remove the tab instead of chopping the next word")
+    public void wrapAtHorizontalTab() {
+        assertThat(WordWrap.wrap("wrap this\twithout\tchopping", 10),
+                is ("wrap this\nwithout\nchopping"));
+    }
+
+    @Test
+    @DisplayName("When a nearby carriage-return exists, wrap there and remove the CR instead of chopping the next word")
+    public void wrapAtCarriageReturn() {
+        assertThat(WordWrap.wrap("wrap this\rwithout\rchopping", 10),
+                is ("wrap this\nwithout\nchopping"));
+    }
+
+    @Test
+    @DisplayName("When a nearby form-feed exists, wrap there and remove the FF instead of chopping the next word")
+    public void wrapAtFormFeed() {
+        assertThat(WordWrap.wrap("wrap this\fwithout\fchopping", 10),
+                is ("wrap this\nwithout\nchopping"));
+    }
+
+    @Test
     @DisplayName("When wrapping, prefer that the new line starts with a word that begins with a Capital letter")
-    public void preferUpperCaseWordsAfterNewLine() {
+    public void preferUpperCaseWordsAfterSpaceToStartNewLine() {
         assertThat(WordWrap.wrap("To wrap Or not To wrap That is The question", 10),
+                is ("To wrap\nOr not\nTo wrap\nThat is\nThe\nquestion"));
+    }
+
+    @Test
+    @DisplayName("When wrapping, prefer words starting Capital letter, even when these words comme after a tab")
+    public void preferUpperCaseWordsAfterTabToStartNewLine() {
+        assertThat(WordWrap.wrap("To wrap\tOr not\tTo wrap\tThat is\tThe question", 10),
                 is ("To wrap\nOr not\nTo wrap\nThat is\nThe\nquestion"));
     }
 
