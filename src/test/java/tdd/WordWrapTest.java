@@ -60,7 +60,7 @@ public class WordWrapTest {
     }
 
     @Test
-    @DisplayName("When wrapping, prefer words starting Capital letter, even when these words comme after a tab")
+    @DisplayName("When wrapping, prefer words starting with a Capital letter, even when these words come after a tab")
     public void preferUpperCaseWordsAfterTabToStartNewLine() {
         assertThat(WordWrap.wrap("To wrap\tOr not\tTo wrap\tThat is\tThe question", 10),
                 is ("To wrap\nOr not\nTo wrap\nThat is\nThe\nquestion"));
